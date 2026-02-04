@@ -13,5 +13,9 @@ public class EmployeeDTO {
 
     private String name;
     private double salary;
+    private String gender;
+    private String note;
+    private Date startDate;
+    private String department;
 
 }
