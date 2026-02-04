@@ -25,12 +25,16 @@ public class EmployeeService {
         Employee emp = new Employee();
         emp.setName(dto.getName());
         emp.setSalary(dto.getSalary());
+        emp.setGender(dto.getGender());
+        emp.setNote(dto.getNote());
+        emp.setStartDate(dto.getStartDate());
+        emp.setDepartment(dto.getDepartment());
 
         Employee saved = employeeRepo.save(emp);
 
         log.info("Employee saved successfully with id {}", saved.getId());
 
-        return new EmployeeDTO(saved.getName(), saved.getSalary());
+        return new EmployeeDTO(saved.getName(), saved.getSalary(), saved.getGender(), saved.getNote(), saved.getStartDate(), saved.getDepartment() );
     }
 
     public EmployeeDTO findById(int id) {
@@ -44,7 +48,7 @@ public class EmployeeService {
 
         log.info("Employee found : {}", emp.getName());
 
-        return new EmployeeDTO(emp.getName(), emp.getSalary());
+        return new EmployeeDTO(emp.getName(), emp.getSalary(), emp.getGender(), emp.getNote(), emp.getStartDate(), emp.getDepartment());
     }
 
     public List<EmployeeDTO> viewAllEmp() {
@@ -52,7 +56,7 @@ public class EmployeeService {
 
         List<EmployeeDTO> list = employeeRepo.findAll()
                 .stream()
-                .map(emp -> new EmployeeDTO(emp.getName(), emp.getSalary()))
+                .map(emp -> new EmployeeDTO(emp.getName(), emp.getSalary(), emp.getGender(), emp.getNote(), emp.getStartDate(), emp.getDepartment()))
                 .collect(Collectors.toList());
 
         log.info("Total employees fetched : {}", list.size());
@@ -71,12 +75,16 @@ public class EmployeeService {
 
         emp.setName(dto.getName());
         emp.setSalary(dto.getSalary());
+        emp.setGender(dto.getGender());
+        emp.setNote(dto.getNote());
+        emp.setStartDate(dto.getStartDate());
+        emp.setDepartment(dto.getDepartment());
 
         Employee updated = employeeRepo.save(emp);
 
         log.info("Employee updated successfully {}", id);
 
-        return new EmployeeDTO(updated.getName(), updated.getSalary());
+        return new EmployeeDTO(updated.getName(), updated.getSalary(), updated.getGender(), updated.getNote(), updated.getStartDate(), updated.getDepartment());
     }
 
     public String deleteEmp(int id) {
