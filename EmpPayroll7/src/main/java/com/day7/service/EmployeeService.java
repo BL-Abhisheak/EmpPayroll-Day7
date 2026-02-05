@@ -64,6 +64,20 @@ public class EmployeeService {
         return list;
     }
 
+
+    public List<EmployeeDTO> viewByDepartment(String department) {
+        log.info("Fetching employees in department {}", department);
+
+        List<EmployeeDTO> list = employeeRepo.findByDepartment(department)
+                .stream()
+                .map(emp -> new EmployeeDTO(emp.getName(), emp.getSalary(), emp.getGender(), emp.getNote(), emp.getStartDate(), emp.getDepartment()))
+                .collect(Collectors.toList());
+
+        log.info("Total employees fetched in department {}: {}", department, list.size());
+
+        return list;
+    }
+
     public EmployeeDTO updateEmp(int id, EmployeeDTO dto) {
         log.info("Updating employee with id {}", id);
 

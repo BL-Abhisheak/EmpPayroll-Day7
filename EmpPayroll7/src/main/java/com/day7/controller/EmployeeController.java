@@ -49,6 +49,13 @@ public class EmployeeController {
         return employeeService.updateEmp(id, dto);
     }
 
+
+    @GetMapping("/{dept}")
+    public List<EmployeeDTO> viewByDepartment(@PathVariable String dept) {
+        log.info("GET /emp/department/{} called", dept);
+        return employeeService.viewByDepartment(dept);
+    }   
+
     @DeleteMapping("/{id}")
     public String deleteEmp(@PathVariable int id) {
         log.warn("DELETE /emp/{} called", id);
